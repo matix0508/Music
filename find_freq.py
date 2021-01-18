@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from numpy import array, diff, where, split
 import sys
 from numpy import arange
@@ -10,16 +11,6 @@ import matplotlib.pyplot as plt
 # matplotlib.use('tkagg')
 
 from math import log2, pow
-
-A4 = 440
-C0 = A4*pow(2, -4.75)
-name = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-
-def note(freq):
-    h = round(12*log2(freq/C0))
-    octave = h // 12
-    n = h % 12
-    return name[n] + str(octave)
 
 def findPeak(magnitude_values, noise_level=2000):
 
@@ -114,4 +105,7 @@ if __name__ == '__main__':
     print(len(magnitude_values))
     print(magnitude_values[1000])
     magnitude_values[freq_bins<20] = 0
-    print(freq_bins[magnitude_values.argmax()])
+    freq = freq_bins[magnitude_values.argmax()]
+    print(freq)
+    with open('freq', 'a') as f:
+        f.write(str(freq))
