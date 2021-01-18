@@ -6,8 +6,8 @@ from scipy.fftpack import fft
 import soundfile
 import numpy, scipy
 import copy
-import matplotlib
-import matplotlib.pyplot as plt
+# import matplotlib
+# import matplotlib.pyplot as plt
 # matplotlib.use('tkagg')
 
 from math import log2, pow
@@ -43,7 +43,7 @@ def findPeak(magnitude_values, noise_level=2000):
 
     return indices
 
-def extractFrequency(indices, freq_threshold=1):
+def extractFrequency(indices, freq_threshold=0):
 
     extracted_freqs = []
 
@@ -102,10 +102,15 @@ if __name__ == '__main__':
 
     x_asis_data = freq_bins
     y_asis_data = magnitude_values
-    print(len(magnitude_values))
-    print(magnitude_values[1000])
-    magnitude_values[freq_bins<20] = 0
+    # print(len(magnitude_values))
+    # print(magnitude_values[1000])
+    magnitude_values[freq_bins<30] = 0
     freq = freq_bins[magnitude_values.argmax()]
-    print(freq)
+    # print(freq)
     with open('freq', 'a') as f:
         f.write(str(freq))
+        f.write('\n')
+
+    with open('current', 'a') as f:
+        f.write(str(freq))
+        f.write('\n')
