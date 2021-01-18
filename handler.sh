@@ -2,14 +2,19 @@
 n=$1
 touch freq
 > freq
-# touch current
+touch current
 
 for (( i=1; i<=$n; i++ ))
 do
-  # > current
+  echo '1'
+  > current
+
   ./record.sh 1 output
+  echo 'recorded'
   ./find_freq.py output.wav
-  # ./color.py $(<current)
+  echo 'found'
+  ./color.py $(<current)
+  echo 'color'
 done
 
 echo 'registered frequencies: '

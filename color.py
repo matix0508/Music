@@ -6,7 +6,7 @@ sb = 80 # Hz
 st = 880 # Hz
 lb = 380
 lt = 750
-w = int(sys.argv[1])
+w = int(float(sys.argv[1]))
 def convert(x):
     a = (lt-lb)/(st-sb)
     b = lt - a * st
